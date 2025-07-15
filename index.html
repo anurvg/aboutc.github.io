@@ -4,66 +4,157 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About the Creator — Kaagaz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #0d1117, #1f2933);
-      font-family: 'Space Grotesk', sans-serif;
-      color: #e2e8f0;
+      font-family: 'Georgia', serif;
+      background: #0a0d10;
+      color: #d4d4d4;
+      overflow-x: hidden;
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+    }
+
+    .bg-svg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .content {
+      max-width: 720px;
+      padding: 6vh 2rem 4vh;
       text-align: center;
-      padding: 2rem;
+      transition: transform 1s ease, padding-top 1s ease;
+    }
+
+    .content.shift-up {
+      transform: translateY(-80px);
+      padding-top: 1.5rem; /* Space from top edge after shift */
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #64ffda;
+      font-size: 2.6rem;
+      color: #e2e8f0;
+      margin-bottom: 2rem;
+    }
+
+    h1.fade-out {
+      animation: fadeDownOut 1s ease forwards;
+    }
+
+    @keyframes fadeDownOut {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.92);
+      }
     }
 
     p {
-      max-width: 720px;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       line-height: 1.75;
-      margin-bottom: 1.6rem;
+      color: #bcbcbc;
+      margin-bottom: 1.4rem;
     }
 
     .highlight {
-      color: #ffe066;
-      font-weight: 600;
+      color: #e0c174;
+      font-weight: bold;
     }
 
     a {
-      color: #94d2bd;
+      color: #8fbcd4;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: bold;
       transition: color 0.3s ease;
     }
 
     a:hover {
       color: #f4a261;
     }
+
+    [data-aos] {
+      opacity: 0;
+      transition-property: opacity, transform;
+    }
+
+    [data-aos].aos-animate {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
-  <h1>About the Creator</h1>
-  <p>
-    I'm <span class="highlight">Anurag Borkakati</span>, the guy behind <strong>Kaagaz</strong>.
-  </p>
-  <p>
-    I make websites, write stuff, and sometimes call that “poetry.” Most of it starts as a random thought and ends up here.
-  </p>
-  <p>
-    Not a professional writer. Not a professional coder either. But this site is mine, and it works — so that’s enough.
-  </p>
-  <p>
-    I hang out on <a href="https://instagram.com/anurvg.r" target="_blank">Instagram</a> sometimes. Rest is in the menu.
-  </p>
+
+  <!-- MOVING BACKGROUND SVG -->
+  <svg class="bg-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="bgGrad1" cx="50%" cy="50%" r="80%">
+        <stop offset="0%" stop-color="#1f2933">
+          <animate attributeName="stop-color" values="#1f2933;#0f1c24;#1f2933" dur="6s" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" stop-color="#0a0d10">
+          <animate attributeName="stop-color" values="#0a0d10;#1a1d22;#0a0d10" dur="6s" repeatCount="indefinite"/>
+        </stop>
+      </radialGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#bgGrad1)" />
+    <circle cx="50" cy="50" r="60" fill="#2a2e35" opacity="0.15">
+      <animate attributeName="r" values="60;65;60" dur="8s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="50;48;52;50" dur="10s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="50;53;47;50" dur="10s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="30" cy="70" r="45" fill="#445566" opacity="0.1">
+      <animate attributeName="cx" values="30;33;27;30" dur="9s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="70;67;73;70" dur="9s" repeatCount="indefinite" />
+    </circle>
+  </svg>
+
+  <!-- MAIN CONTENT -->
+  <div class="content" id="mainContent">
+    <h1 id="mainTitle">About the Creator</h1>
+
+    <p data-aos="fade-up" data-aos-delay="100">
+      I’m <span class="highlight">Anurag Borkakati</span>, the voice behind <strong>Kaagaz</strong> — a digital corner where structure meets soul, and silent thoughts find expression.
+    </p>
+
+    <p data-aos="fade-up" data-aos-delay="250">
+      This site wasn't built for attention; it was shaped with intention. It’s where fragments of the mind are gathered, refined, and preserved.
+    </p>
+
+    <p data-aos="fade-up" data-aos-delay="400">
+      I don’t hold titles — not a poet by degree, not a developer by diploma — but what I create carries care, and that’s enough for me.
+    </p>
+
+    <p data-aos="fade-up" data-aos-delay="550">
+      I’m occasionally on <a href="https://instagram.com/anurvg.r" target="_blank">Instagram</a>, but you’ll find more of me between these lines than in any feed.
+    </p>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+
+    setTimeout(() => {
+      const title = document.getElementById("mainTitle");
+      const content = document.getElementById("mainContent");
+      title.classList.add("fade-out");
+      content.classList.add("shift-up");
+    }, 2000);
+  </script>
+
 </body>
 </html>
